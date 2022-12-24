@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+
+  <title>Frontend Mentor | Tip calculator app</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    /* .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); } */
+
+    @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@700&display=swap');
+
+    * {
+      margin: 0px;
+      padding: 0px;
+      font-family: 'Space Mono';
+      border: none;
+    }
+
+    /* ------------------------Reduce Code Line------------------------*/
+    .round {
+      border-radius: 5px;
+    }
+
+    .roundBig {
+      border-radius: 10px;
+    }
+
+    .wid {
+      width: 30%;
+      margin: 2% 0px;
+      flex-wrap: wrap;
+      /* justify-content: space-between; */
+      height: 6vh;
+    }
+
+    .flex_col {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .flex_row {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .flex_space {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    /* ------------------------------------------------- */
+
+    .main {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: hsl(185, 41%, 84%);
+    }
+
+    .logo {
+      position: relative;
+      bottom: 15%;
+      margin-top: 10vh;
+    }
+
+    .size {
+      font-size: 1.5rem;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: row;
+      padding: 2%;
+      background-color: hsl(189, 41%, 97%);
+    }
+
+    .left {
+      width: 30vw;
+      margin: 10px;
+    }
+
+    .txtLeft{
+      color: hsl(186, 14%, 43%);
+      font-size: 0.9rem;
+      padding-bottom: 1%;
+    }
+
+    .btnCustom{
+      font-size: 1rem;
+    }
+
+    .mtop {
+      margin-top: 8%;
+    }
+
+    .numRight {
+      text-align: right;
+    }
+
+    #cbz{
+      color: red;
+    }
+
+    .right {
+      width: 25vw;
+      background-color: hsl(183, 100%, 15%);
+      margin: 10px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .op {
+      font-size: 2.2rem;
+      color: hsl(172, 67%, 45%);
+      margin-block-start: -8%;
+    }
+
+    .tbl {
+      width: 90%;
+      margin: 5% auto;
+    }
+
+    .space {
+      margin-bottom: 20px;
+    }
+
+    .text_light {
+      color: hsl(189, 41%, 97%);
+      font-size: 0.85rem;
+    }
+
+    .text_dark {
+      color: hsl(184, 14%, 56%);
+      font-size: 0.7rem
+    }
+
+    #rst {
+      color: hsl(183, 100%, 15%);
+      background-color: hsl(172, 67%, 45%);
+      font-size: 20px;
+      width: 90%;
+      margin: 5% auto;
+      height: 15%;
+    }
+
+    #rst:hover {
+      background-color: hsl(185, 41%, 84%);
+    }
+
+    .btn_bg {
+      background-color: hsl(183, 100%, 15%);
+      color: hsl(185, 41%, 84%);
+    }
+
+    .btn_bg:hover {
+      background-color: hsl(185, 41%, 84%);
+      color: hsl(183, 100%, 15%);
+    }
+    .bred{
+      border: 2px solid red;
+      /* border-color: red; */
+    }
+
+    @media (max-width: 376px) {
+      .container {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        padding: 30px;
+      }
+
+      .left {
+        width: 100%;
+        margin: 0px;
+      }
+
+      .btnCustom {
+        font-size: 1.5rem;
+      }
+
+      .right {
+        width: 100%;
+        margin: 7% 0px 0px 0px;
+        padding: 2%;
+        justify-content: center;
+      }
+
+      .wid {
+        width: 47.5%;
+      }
+
+      .tbl {
+        width: 90%;
+        margin: 5% auto 7%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="main body">
+    <div class="img_set">
+      <img class="logo" src="images/logo.png" alt="">
+    </div>
+    <div class="container roundBig">
+      <div class="left roundBig">
+        <form action="post" class="flex_col">
+          <label for="bill" class="txtLeft">Bill</label>
+          <input type="number" name="" placeholder="0" id="bill" class="numRight round size">
+          <label for="" class="txtLeft mtop">Select Tip %</label>
+          <div class="flex_row " style="flex-wrap: wrap; justify-content: space-between;">
+            <input type="button" value="5%" onclick="tipSelect(5)" class=" wid round size btn_bg">
+            <input type="button" value="10%" onclick="tipSelect(10)" class=" wid marCen round size btn_bg">
+            <input type="button" value="15%" onclick="tipSelect(15)" class=" wid round size btn_bg">
+            <input type="button" value="25%" onclick="tipSelect(25)" class=" wid round size btn_bg">
+            <input type="button" value="50%" onclick="tipSelect(50)" class=" wid marCen round size btn_bg">
+            <input type="number" value="" id="custom" placeholder=" Custom " class="wid round size numRight btnCustom">
+          </div>
+          <div class="flex_space mtop">
+            <label for="noOfPeople" class="txtLeft">Number of People</label>
+            <label for="noOfPeople" class="txtLeft" id="cbz">Can't be Zero</label>
+          </div>
+          <input type="number" placeholder="0" id="nop" class="round numRight size">
+        </form>
+      </div>
+
+      <div class="right roundBig">
+        <!-- <div> -->
+        <table class="tbl">
+          <tr class="flex_space space">
+            <td class="text_dark">
+              <p class="text_light">Tip Amount</p> / person
+            </td>
+            <td>
+              <p class="op" id="tipPerperson">$0.00</p>
+            </td>
+          </tr>
+          <tr class="flex_space">
+            <td class="text_dark">
+              <p class="text_light">Total </p> / person
+            </td>
+            <td>
+              <p class="op" id="bilPerPerson">$0.00</p>
+            </td>
+          </tr>
+        </table>
+        <!-- </div> -->
+        <input type="button" class="round" id="rst" onclick="reset()" value="RESET">
+      </div>
+    </div>
+  </div>
+
+  <script>
+
+    document.getElementById("custom").addEventListener('keypress',function(event){
+      if(event.keyCode === 13){
+        var y = document.getElementById("custom").value;
+        tipSelect(y);
+      }
+    });
+
+    document.getElementById("cbz").hidden = true;
+    function tipSelect(x){
+      var billVal = document.getElementById("bill").value;
+      var noOfPeople = document.getElementById("nop").value;
+      if(billVal == 0 ){
+        alert("Enter Bill Value First")
+      } else if(noOfPeople == 0){
+        document.getElementById("cbz").hidden = false;
+        document.getElementById("nop").classList.add("bred");
+        // alert("Enter Number of people");
+      }
+      else{
+        var ans = ((billVal*x)/100);
+        document.getElementById("tipPerperson").innerHTML=ans;
+        var total = (billVal/noOfPeople)+(ans/noOfPeople);
+        document.getElementById("bilPerPerson").innerHTML=total;
+
+      }
+    }
+    function reset(){
+      document.getElementById("cbz").hidden = true;
+      document.getElementById("nop").classList.remove("bred");
+      document.getElementById("bill").value="";
+      document.getElementById("nop").value="";
+      document.getElementById("tipPerperson").innerHTML="0.00";
+      document.getElementById("bilPerPerson").innerHTML="0.00";
+      document.getElementById("custom").value="";
+      // alert("Reset");
+    }
+  </script>
+
+</body>
+
+</html>
